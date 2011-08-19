@@ -1,14 +1,19 @@
 #include	<stdlib.h>
-#include	"base.h"
+#include	<assert.h>
+#include	"ooc_base.h"
 
 void		*new(const void *obj, ...)
 {
-  t_class	*item = (t_class *)obj;
+  t_class	*type = (t_class *)obj;
   void		*self;
+  va_list	ap;
 
-  self = malloc(item->size);
-  self = item->ctor(self, NULL);
+  assert(type);
+  self = malloc(type->size);
+  *(t_class **)self = type;
+  va_start(ap, obj);
   
-  obj = obj;  
-  return (NULL);
+  self = type->ctor(self, &ap);
+  va_end(ap);
+  return (self);
 }

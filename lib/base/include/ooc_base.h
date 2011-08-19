@@ -11,5 +11,6 @@ typedef struct	s_class
 }		t_class;
 
 void		*new(const void *obj, ...);
+void		delete(void *obj);
 
 #endif

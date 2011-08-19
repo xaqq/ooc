@@ -1,8 +1,13 @@
-#include	"base.h"
-#include	"string.h"
+#include	"ooc_base.h"
+#include	"ooc_string.h"
 
 int	main()
 {
-  new(String);
+  void	*str;
+
+  str = new(String, "Coucou je suis une chaine :D");
+  string_print(str);
+  delete(str);
+
   return (0);
 }
