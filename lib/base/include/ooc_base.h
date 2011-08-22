@@ -8,6 +8,7 @@ typedef struct	s_class
   int		size;
   void		*(*ctor)(void *_self, va_list *ap);
   void		*(*dtor)(void *_self);
+  int		(*differ)(const void *_self, const void *obj);
 }		t_class;
 
 void		*new(const void *obj, ...);

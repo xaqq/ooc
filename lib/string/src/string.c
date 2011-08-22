@@ -20,17 +20,25 @@ void		*string_dtor(void *_self)
   return (_self);
 }
 
-void		string_print(void *_self)
+void		string_print(const void *_self)
 {
   if (((t_string *)_self)->data)
     printf("%s", ((t_string *)_self)->data);
+}
+
+int		string_differ(const void *_self, const void *obj)
+{
+  _self = _self;
+  obj = obj;
+  return (0);
 }
 
 static const t_class _String = 
   {
     sizeof(struct s_string),
     &string_ctor,
-    &string_dtor
+    &string_dtor,
+    &string_differ
   };
 
 const void *String = &_String;
