@@ -13,6 +13,7 @@ INCLUDE_DIRECTORIES(
 ADD_LIBRARY(ooc_base STATIC
   lib/base/src/new.c
   lib/base/src/delete.c
+  lib/base/src/typeOf.c
 )
 
 ADD_LIBRARY(ooc_string STATIC

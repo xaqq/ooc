@@ -13,5 +13,6 @@ typedef struct	s_class
 
 void		*new(const void *obj, ...);
 void		delete(void *obj);
+void		*typeOf(const void *obj);
 
 #endif
