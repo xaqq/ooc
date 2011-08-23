@@ -15,4 +15,12 @@ void		*new(const void *obj, ...);
 void		delete(void *obj);
 void		*typeOf(const void *obj);
 
+/**
+ * Check if the two differ by calling obj1 differ's method.
+ * If the two arent of the same type, differ returns -1.
+ * If no differ function is found, differ returns -1.
+ * @return int
+ */
+int		differ(const void *obj1, const void *obj2);
+
 #endif
