@@ -26,11 +26,14 @@ void		string_print(const void *_self)
     printf("%s", ((t_string *)_self)->data);
 }
 
-int		string_differ(const void *_self, const void *obj)
+int		string_differ(const void *_self, const void *_obj)
 {
-  _self = _self;
-  obj = obj;
-  return (0);
+  t_string	*self = (t_string *)_self;
+  t_string	*obj = (t_string *)_obj;
+
+  if (strcmp(obj->data, self->data) == 0)
+    return (0);
+  return (1);
 }
 
 static const t_class _String = 
