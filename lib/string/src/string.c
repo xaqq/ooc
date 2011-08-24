@@ -36,12 +36,20 @@ int		string_differ(const void *_self, const void *_obj)
   return (1);
 }
 
+void		*string_clone(const void *_self)
+{
+  t_string	*self = (t_string *)_self;
+
+  return (new(String, self->data));
+}
+
 static const t_class _String = 
   {
     sizeof(struct s_string),
     &string_ctor,
     &string_dtor,
-    &string_differ
+    &string_differ,
+    &string_clone
   };
 
 const void *String = &_String;

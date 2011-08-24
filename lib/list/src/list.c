@@ -1,5 +1,6 @@
 #include	<stdarg.h>
 #include	<stdlib.h>
+#include	<string.h>
 #include	"ooc_base.h"
 #include	"ooc_list.h"
 
@@ -27,7 +28,6 @@ void		list_append_real_function(void *_self, void *data)
   t_list	*self = (t_list *)_self;
   t_list_item	*item = malloc(sizeof(t_list_item));
   unsigned char	*storage;
-  int		i;
 
   storage = malloc(self->data_size);
   memcpy(storage, *(void **)data, self->data_size);
@@ -48,7 +48,8 @@ static const t_class _List =
     sizeof(struct s_list),
     &list_ctor,
     &list_dtor,
-    NULL
+    NULL, // differ
+    NULL, // clone
   };
 
 

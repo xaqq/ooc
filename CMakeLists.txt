@@ -4,11 +4,13 @@ ADD_DEFINITIONS(-g -W -Wall)
 
 ADD_EXECUTABLE(test.out
   tests/main.c
+  tests/string.c
 )
 INCLUDE_DIRECTORIES(
   lib/base/include/
   lib/string/include/
   lib/list/include
+  tests/
 )
 
 ADD_LIBRARY(ooc_base STATIC
@@ -16,6 +18,7 @@ ADD_LIBRARY(ooc_base STATIC
   lib/base/src/delete.c
   lib/base/src/typeOf.c
   lib/base/src/differ.c
+  lib/base/src/clone.c
 )
 
 ADD_LIBRARY(ooc_string STATIC
