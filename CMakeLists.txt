@@ -5,6 +5,7 @@ ADD_DEFINITIONS(-g -W -Wall)
 ADD_EXECUTABLE(test.out
   tests/main.c
   tests/string.c
+  tests/list.c
 )
 INCLUDE_DIRECTORIES(
   lib/base/include/

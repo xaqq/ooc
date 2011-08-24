@@ -12,6 +12,7 @@ void		*list_ctor(void *_self, va_list *ap)
   self->data_size = size;
   self->first = NULL;
   self->last = NULL;
+  self->data_is_ptr = 0;
   return (_self);  
 }
 
@@ -30,18 +31,62 @@ void		list_append_real_function(void *_self, void *data)
   unsigned char	*storage;
 
   storage = malloc(self->data_size);
-  memcpy(storage, *(void **)data, self->data_size);
-  item->data = data;
-  self->last = item;
+  memcpy(storage, data, self->data_size);
+  item->data = storage;
+  item->next = NULL;
+  
+  if (!self->first)
+    {
+      self->first = item;
+      self->last = item;
+    }
+  else
+    {
+      self->last->next = item;
+      self->last = item;
+    }
 }
 
 void		*list_get_last(void *_self)
 {
   t_list	*self = (t_list *)_self;
-  return ((void *)(self->last->data));
+
+  if ((void *)(self->last))
+    {
+      if (self->data_is_ptr) // Returns pointed data.
+	return (*(void **)(self->last->data));
+      return ((void *)(self->last->data));
+    }
+  return (NULL);
 }
 
+void		*list_get_first(void *_self)
+{
+  t_list	*self = (t_list *)_self;
 
+
+  if ((void *)(self->last))
+    {
+      if (self->data_is_ptr) // Returns pointed data.
+	return (*(void **)(self->first->data));
+      return ((void *)(self->first->data));
+    }
+  return (NULL);
+}
+
+void		list_set_data_is_ptr(void *_self, int val)
+{
+  t_list	*self = (t_list *)_self;
+  
+  self->data_is_ptr = val;
+}
+
+int		list_get_data_is_ptr(void *_self)
+{
+  t_list	*self = (t_list *)_self;
+
+  return (self->data_is_ptr);
+}
 
 static const t_class _List = 
   {
@@ -51,6 +96,5 @@ static const t_class _List =
     NULL, // differ
     NULL, // clone
   };
-
 
 const void *List = &_List;
