@@ -28,6 +28,7 @@ ADD_LIBRARY(ooc_string STATIC
 
 ADD_LIBRARY(ooc_list STATIC
   lib/list/src/list.c
+  lib/list/src/itr.c
 )
 
 TARGET_LINK_LIBRARIES (test.out ooc_base ooc_string ooc_list)

@@ -1,8 +1,6 @@
 #ifndef		__OOC_LIST_H__
 #define		__OOC_LIST_H__
 
-#define		list_append(x, y)	list_append_real_function((x), ((void *)&(y)));
-
 typedef struct		s_list_item
 {
   unsigned char		*data;
@@ -18,8 +16,13 @@ typedef struct	s_list
   t_list_item	*last;
 }		t_list;
 
+/**
+ * List constructor, as unique parameter it takes the size of the stored data.
+ */
 void		*list_ctor(void *_self, va_list *ap);
 void		*list_dtor(void *_self);
+
+#define		list_append(x, y)	list_append_real_function((x), ((void *)&(y)));
 void		list_append_real_function(void *_self, void *data);
 
 /**
@@ -49,6 +52,8 @@ void		list_set_data_is_ptr(void *_self, int);
  */
 int		list_get_data_is_ptr(void *_self);
 
+
+void		*list_get_specific_item(t_list *self, t_list_item *cur);
 extern const void *List;
 
 #endif

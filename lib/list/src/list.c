@@ -2,7 +2,7 @@
 #include	<stdlib.h>
 #include	<string.h>
 #include	"ooc_base.h"
-#include	"ooc_list.h"
+#include	"ooc_itr.h"
 
 void		*list_ctor(void *_self, va_list *ap)
 {
@@ -18,9 +18,14 @@ void		*list_ctor(void *_self, va_list *ap)
 
 void		*list_dtor(void *_self)
 {
-  t_list	*self = (t_list *)_self;
-  
-  self = self;
+  void		*itr;
+
+  for (itr = new(Itr, _self); itr_ok(itr); itr_next(itr))
+    {
+      free(((t_list_item *)itr_get_ptr(itr))->data);
+      free(itr_get_ptr(itr));
+    }
+  delete(itr);
   return (_self);
 }
 
@@ -70,6 +75,17 @@ void		*list_get_first(void *_self)
       if (self->data_is_ptr) // Returns pointed data.
 	return (*(void **)(self->first->data));
       return ((void *)(self->first->data));
+    }
+  return (NULL);
+}
+
+void		*list_get_specific_item(t_list *self, t_list_item *i)
+{
+  if (i)
+    {
+      if (self->data_is_ptr) // Returns pointed data.
+	return (*(void **)(i->data));
+      return ((void *)(i->data));
     }
   return (NULL);
 }
