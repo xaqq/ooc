@@ -17,7 +17,7 @@ void		test_list_string()
   /* test 2 */
   printf("List string test 2]: After appending an element to the list, this element "
 	 "should be the first and the last one:\n");
-  list_append(list, str);
+  list_push(list, str);
   printf("\t\tNew element: %p, first: %p, last: %p\n", str, list_get_first(list),
 	 list_get_last(list));
 
@@ -36,12 +36,10 @@ void		test_list_int()
   int		i = 42;
 
   printf("[List int test 1]: Printing last item, should output \"42\": ");
-  list_append(list, i); // Note: you cannot use list_append(list, 5)
+  list_push(list, i);
   printf("%d\n", *(int *)list_get_last(list));
 
-  list_append_real_function(list, (i = 78, &i));
-  i = 1337;
-  list_append(list, i);
+  list_push(list, 31137);
   for (itr = new(Itr, list); itr_ok(itr); itr_next(itr))
     {
       printf("%d\n", *(int *)itr_get(itr));

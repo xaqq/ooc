@@ -1,0 +1,24 @@
+#include	<stdarg.h>
+#include	<stdlib.h>
+#include	<string.h>
+#include	"ooc_base.h"
+#include	"ooc_list.h"
+
+static unsigned char	*list_save_me_i(int size, unsigned char *ptr)
+{
+  unsigned char	*data;
+
+  data = malloc(size);
+  memcpy(data, ptr, size);
+  return (data);
+}
+
+t_list_item	*list_get_user_data_i(void *_self, ...)
+{
+  t_list	*self = (t_list *)_self;
+  t_list_item	*item = malloc(sizeof(t_list_item));
+  va_list	ap;
+
+  va_start(ap, _self);
+  switch (self->data_size)
+    {

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 
-ADD_DEFINITIONS(-g -W -Wall)
+ADD_DEFINITIONS(-g -W -Wall -pg)
 
 ADD_EXECUTABLE(test.out
   tests/main.c
@@ -28,7 +28,8 @@ ADD_LIBRARY(ooc_string STATIC
 
 ADD_LIBRARY(ooc_list STATIC
   lib/list/src/list.c
+  lib/list/src/list_get_user_data.c
   lib/list/src/itr.c
 )
 
-TARGET_LINK_LIBRARIES (test.out ooc_base ooc_string ooc_list)
+TARGET_LINK_LIBRARIES (test.out -pg ooc_base ooc_string ooc_list)

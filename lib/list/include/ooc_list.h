@@ -22,8 +22,10 @@ typedef struct	s_list
 void		*list_ctor(void *_self, va_list *ap);
 void		*list_dtor(void *_self);
 
-#define		list_append(x, y)	list_append_real_function((x), ((void *)&(y)));
-void		list_append_real_function(void *_self, void *data);
+#define		list_push(x, y)		list_push_i((x), list_get_user_data_i((x), (y)))
+
+void		list_push_i(void *_self, t_list_item *i);
+t_list_item	*list_get_user_data_i(void *_self, ...);
 
 /**
  * Returns a pointer to the data stored by the list.

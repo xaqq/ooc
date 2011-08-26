@@ -29,17 +29,11 @@ void		*list_dtor(void *_self)
   return (_self);
 }
 
-void		list_append_real_function(void *_self, void *data)
+void		list_push_i(void *_self, t_list_item *item)
 {
   t_list	*self = (t_list *)_self;
-  t_list_item	*item = malloc(sizeof(t_list_item));
-  unsigned char	*storage;
-
-  storage = malloc(self->data_size);
-  memcpy(storage, data, self->data_size);
-  item->data = storage;
-  item->next = NULL;
   
+  item->next = NULL;
   if (!self->first)
     {
       self->first = item;
